@@ -1,0 +1,219 @@
+<div class="page-wrapper">
+  {{ custom_header }}
+  <div class="content-wrapper row m-0">
+  {{ custom_column_left }}
+  <main class="main-wrap col-12 col-lg-10 p-0">
+      <div class="main-content">
+        <div class="sub-head clearfix">
+          <h1 class="page-title float-left">Sản phẩm</h1>
+          <a href="{{ add }}" class="advance-link btn float-right">Thêm sản phẩm</a>
+        </div>
+        <div class="box-wrap">
+          <div class="box-head">
+            <div class="nav nav-tabs" id="order-form-tab" role="tablist">
+              <a class="active">Danh sách sản phẩm</a>
+              <a href="{{ categories }}">Danh mục sản phẩm</a>
+            </div>
+          </div>
+          <div class="box-content">
+            <div class="tab-content">
+              <form class="filter-form order-filter clearfix">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="input-group search-group">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lọc</button>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                          <div role="separator" class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                      </div>
+                      <div class="input-group-icon">
+                        <i class="icon icon-search"></i>
+                        <input type="text" class="form-control search-input-icon" placeholder="Search">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 text-right">
+                    <div class="button-options">
+                      <a class="item" href="#"><i class="icon icon-import"></i> Nhập file</a>
+                      <a class="item" href="#"><i class="icon icon-export"></i> Xuất file</a>
+                    </div>
+                  </div>
+                </div> <!-- End row -->
+              </form>
+
+              <table class="table product-list">
+                <thead>
+                  <tr>
+                    <th scope="check-all">
+                      <div class="dropdown">
+                        <label class="checkbox">
+                          <input type="checkbox" name="select_all">
+                          <span></span>
+                        </label>
+                        <a class="dropdown-toggle" href="#" id="dropdownOperationTable" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownOperationTable">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>
+                    </th>
+                    <th scope="col">Sản phẩm</th>
+                    <th scope="col" width="120">Mã sản phẩm</th>
+                    <th scope="col" width="120">Giá</th>
+                    <th scope="col" width="60">Số lượng</th>
+                    <th scope="col" width="100">Trạng thái</th>
+                    <th scope="col" width="120">Hành động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% if products %}
+                {% for product in products %}
+                  <tr>
+                    <td scope="select-this" data-id="1">
+                      <label class="checkbox">
+                        <input type="checkbox" name="select_this" value="1">
+                        <span></span>
+                      </label>
+                    </td>
+                    <td>
+                      <div class="row">
+                        <div class="col-3">
+                          <div class="product-img rounded bg-light">
+                          </div>
+                        </div>
+                        <div class="product-title col-9 py-2"> {{ product.name }} </div>
+                      </div>
+                    </td>
+                    <td>{{ product.sku }}</td>
+                    <td>
+                     {% if product.special %}
+                      <span>{{ product.price }}</span>
+                      <span class="text-danger"><del>800,000đ</del></span>
+                      {% else %}
+                      <span>{{ product.price }}</span>
+                      {% endif %}
+                    </td>
+                    <td width="180">{{ product.quantity }}</td>
+                    <td width="180"><span class="status-text py-2 px-3 text-white bg-primary border-radius-20">{{ product.status }}</span></td>
+                    <td>
+                      <div class="dropdown option-link">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownOrderProductOption-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownOrderProductOption-1">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+                {% else %}
+                  <tr>
+                    <td class="text-center" colspan="8">{{ text_no_results }}</td>
+                  </tr>
+                {% endif %}
+                </tbody>
+
+              </table>
+              <div class="row">
+              <div class="col-sm-6 text-left">{{ pagination }}</div>
+              <div class="col-sm-6 text-right">{{ results }}</div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </main>
+  </div>
+</div>
+  <script type="text/javascript"><!--
+$('#button-filter').on('click', function() {
+  var url = '';
+
+  var filter_name = $('input[name=\'filter_name\']').val();
+
+  if (filter_name) {
+    url += '&filter_name=' + encodeURIComponent(filter_name);
+  }
+
+  var filter_model = $('input[name=\'filter_model\']').val();
+
+  if (filter_model) {
+    url += '&filter_model=' + encodeURIComponent(filter_model);
+  }
+
+  var filter_price = $('input[name=\'filter_price\']').val();
+
+  if (filter_price) {
+    url += '&filter_price=' + encodeURIComponent(filter_price);
+  }
+
+  var filter_quantity = $('input[name=\'filter_quantity\']').val();
+
+  if (filter_quantity) {
+    url += '&filter_quantity=' + encodeURIComponent(filter_quantity);
+  }
+
+  var filter_status = $('select[name=\'filter_status\']').val();
+
+  if (filter_status !== '') {
+    url += '&filter_status=' + encodeURIComponent(filter_status);
+  }
+
+  location = 'index.php?route=catalog/product&user_token={{ user_token }}' + url;
+});
+//--></script> 
+  <script type="text/javascript"><!--
+// IE and Edge fix!
+$('button[form=\'form-product\']').on('click', function(e) {
+  $('#form-product').attr('action', $(this).attr('formaction'));
+});
+  
+$('input[name=\'filter_name\']').autocomplete({
+  'source': function(request, response) {
+    $.ajax({
+      url: 'index.php?route=catalog/product/autocomplete&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
+      dataType: 'json',
+      success: function(json) {
+        response($.map(json, function(item) {
+          return {
+            label: item['name'],
+            value: item['product_id']
+          }
+        }));
+      }
+    });
+  },
+  'select': function(item) {
+    $('input[name=\'filter_name\']').val(item['label']);
+  }
+});
+
+$('input[name=\'filter_model\']').autocomplete({
+  'source': function(request, response) {
+    $.ajax({
+      url: 'index.php?route=catalog/product/autocomplete&user_token={{ user_token }}&filter_model=' +  encodeURIComponent(request),
+      dataType: 'json',
+      success: function(json) {
+        response($.map(json, function(item) {
+          return {
+            label: item['model'],
+            value: item['product_id']
+          }
+        }));
+      }
+    });
+  },
+  'select': function(item) {
+    $('input[name=\'filter_model\']').val(item['label']);
+  }
+});
+//--></script></div>
+{{ footer }} 

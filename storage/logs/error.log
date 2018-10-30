@@ -1,0 +1,111 @@
+2018-10-17 8:31:35 - PHP Unknown:  Function mcrypt_create_iv() is deprecated in /Applications/MAMP/htdocs/shoppy/upload/system/library/so_social/Facebook/PseudoRandomString/McryptPseudoRandomStringGenerator.php on line 57
+2018-10-17 8:32:32 - PHP Unknown:  Function mcrypt_create_iv() is deprecated in /Applications/MAMP/htdocs/shoppy/upload/system/library/so_social/Facebook/PseudoRandomString/McryptPseudoRandomStringGenerator.php on line 57
+2018-10-17 8:32:41 - PHP Unknown:  Function mcrypt_create_iv() is deprecated in /Applications/MAMP/htdocs/shoppy/upload/system/library/so_social/Facebook/PseudoRandomString/McryptPseudoRandomStringGenerator.php on line 57
+2018-10-17 8:33:26 - PHP Unknown:  Function mcrypt_create_iv() is deprecated in /Applications/MAMP/htdocs/shoppy/upload/system/library/so_social/Facebook/PseudoRandomString/McryptPseudoRandomStringGenerator.php on line 57
+2018-10-17 8:35:17 - PHP Warning:  A non-numeric value encountered in /Applications/MAMP/htdocs/shoppy/upload/admin/view/template/extension/soconfig/class/scssphp/src/Compiler.php on line 4541
+2018-10-17 8:35:22 - PHP Warning:  A non-numeric value encountered in /Applications/MAMP/htdocs/shoppy/upload/admin/view/template/extension/soconfig/class/scssphp/src/Compiler.php on line 4541
+2018-10-17 8:35:23 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/shoppy/upload/admin/controller/startup/error.php:34) in /Applications/MAMP/htdocs/shoppy/upload/system/library/response.php on line 36
+2018-10-17 8:37:25 - PHP Warning:  A non-numeric value encountered in /Applications/MAMP/htdocs/shoppy/upload/admin/view/template/extension/soconfig/class/scssphp/src/Compiler.php on line 4541
+2018-10-17 8:37:29 - PHP Warning:  A non-numeric value encountered in /Applications/MAMP/htdocs/shoppy/upload/admin/view/template/extension/soconfig/class/scssphp/src/Compiler.php on line 4541
+2018-10-17 8:37:30 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/shoppy/upload/admin/controller/startup/error.php:34) in /Applications/MAMP/htdocs/shoppy/upload/system/library/response.php on line 36
+2018-10-17 8:39:31 - PHP Warning:  rmdir(/Applications/MAMP/htdocs/shoppy/storage/cache/so): Directory not empty in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/common/developer.php on line 70
+2018-10-25 1:43:36 - PHP Warning:  rmdir(/Applications/MAMP/htdocs/shoppy/storage/cache/so): Directory not empty in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/common/developer.php on line 70
+2018-10-25 1:43:39 - PHP Warning:  rmdir(/Applications/MAMP/htdocs/shoppy/storage/cache/so): Directory not empty in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/common/developer.php on line 70
+2018-10-26 4:18:22 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:18:22 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:18:22 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:18:22 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:22:36 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:22:36 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:22:36 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:22:36 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:23:16 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:23:16 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:23:16 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:23:16 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:23:16 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:23:16 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:23:16 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:23:16 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:23:16 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:23:16 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:23:16 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:23:16 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:23:16 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:23:16 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:23:16 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:23:16 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:23:42 - PHP Warning:  mysqli::__construct(): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:23:42 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:23:42 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:23:42 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:24:43 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:24:43 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:24:43 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:24:43 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:24:43 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:24:43 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:24:43 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:24:43 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:24:43 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:24:43 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:24:43 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:24:43 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:24:43 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:24:43 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:24:43 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:24:43 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:25:34 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:25:34 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:25:34 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:25:34 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:25:34 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:25:34 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:25:34 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:25:34 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:25:34 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:25:34 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:25:34 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:25:34 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:25:34 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:25:34 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 4:25:34 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 4:25:34 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 7:08:54 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 7:08:54 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 7:08:54 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 7:08:54 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 7:08:54 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 7:08:54 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 7:08:54 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 7:08:54 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 7:08:54 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 7:08:54 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 7:08:54 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 7:08:54 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 7:08:54 - PHP Notice:  mysqli::__construct(): send of 113 bytes failed with errno=32 Broken pipe in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 7:08:54 - PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 7
+2018-10-26 7:08:54 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-26 7:08:54 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /Applications/MAMP/htdocs/shoppy/upload/system/library/db/mysqli.php on line 10
+2018-10-30 3:16:30 - PHP Warning:  rmdir(/Applications/MAMP/htdocs/shoppy/storage/cache/so): Directory not empty in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/common/developer.php on line 70
+2018-10-30 4:43:02 - PHP Warning:  rmdir(/Applications/MAMP/htdocs/shoppy/storage/cache/so): Directory not empty in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/common/developer.php on line 70
+2018-10-30 4:43:08 - PHP Warning:  rmdir(/Applications/MAMP/htdocs/shoppy/storage/cache/so): Directory not empty in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/common/developer.php on line 70
+2018-10-30 6:41:27 - PHP Warning:  rmdir(/Applications/MAMP/htdocs/shoppy/storage/cache/so): Directory not empty in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/common/developer.php on line 70
+2018-10-30 8:03:45 - PHP Notice:  Array to string conversion in /Applications/MAMP/htdocs/shoppy/upload/system/library/template/Twig/Environment.php(403) : eval()'d code on line 44
+2018-10-30 8:04:58 - PHP Notice:  Array to string conversion in /Applications/MAMP/htdocs/shoppy/upload/system/library/template/Twig/Environment.php(403) : eval()'d code on line 44
+2018-10-30 8:05:07 - PHP Notice:  Array to string conversion in /Applications/MAMP/htdocs/shoppy/upload/system/library/template/Twig/Environment.php(403) : eval()'d code on line 44
+2018-10-30 8:05:15 - PHP Notice:  Array to string conversion in /Applications/MAMP/htdocs/shoppy/upload/system/library/template/Twig/Environment.php(403) : eval()'d code on line 44
+2018-10-30 8:05:22 - PHP Warning:  rmdir(/Applications/MAMP/htdocs/shoppy/storage/cache/so): Directory not empty in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/common/developer.php on line 70
+2018-10-30 8:05:25 - PHP Notice:  Array to string conversion in /Applications/MAMP/htdocs/shoppy/upload/system/library/template/Twig/Environment.php(403) : eval()'d code on line 44
+2018-10-30 8:16:05 - PHP Warning:  rmdir(/Applications/MAMP/htdocs/shoppy/storage/cache/so): Directory not empty in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/common/developer.php on line 70
+2018-10-30 8:22:02 - PHP Notice:  Array to string conversion in /Applications/MAMP/htdocs/shoppy/upload/system/library/template/Twig/Environment.php(403) : eval()'d code on line 44
+2018-10-30 8:36:50 - PHP Notice:  Undefined index: status in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/catalog/category.php on line 215
+2018-10-30 8:36:50 - PHP Notice:  Undefined index: status in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/catalog/category.php on line 215
+2018-10-30 8:36:50 - PHP Notice:  Undefined index: status in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/catalog/category.php on line 215
+2018-10-30 8:36:50 - PHP Notice:  Undefined index: status in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/catalog/category.php on line 215
+2018-10-30 8:36:50 - PHP Notice:  Undefined index: status in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/catalog/category.php on line 215
+2018-10-30 8:36:50 - PHP Notice:  Undefined index: status in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/catalog/category.php on line 215
+2018-10-30 8:36:50 - PHP Notice:  Undefined index: status in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/catalog/category.php on line 215
+2018-10-30 8:36:50 - PHP Notice:  Undefined index: status in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/catalog/category.php on line 215
+2018-10-30 8:36:50 - PHP Notice:  Undefined index: status in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/catalog/category.php on line 215
+2018-10-30 8:36:50 - PHP Notice:  Undefined index: status in /Applications/MAMP/htdocs/shoppy/upload/admin/controller/catalog/category.php on line 215

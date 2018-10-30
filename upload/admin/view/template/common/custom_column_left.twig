@@ -1,0 +1,33 @@
+<div class="sidebar-left col-lg-2 p-0">
+    <nav class="navbar navbar-expand-lg navbar-light" id="sidebar-menu">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLeftMain" aria-controls="navbarLeftMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarLeftMain">
+            <ul class="navbar-nav mr-auto" id="menu">
+            {% set i = 0 %}
+            {% for menu in menus %}
+            <li id="{{ menu.id }}" class="nav-item">{% if menu.href %}<a href="{{ menu.href }}"> {{ menu.name }}</a>{% else %}<a href="#collapse{{ i }}" data-toggle="collapse" class="parent collapsed"><i class="fa {{ menu.icon }} fw"></i> {{ menu.name }}</a>{% endif %}
+                
+               <!--  <li class="nav-item has-children">
+                    <a class="nav-link" data-toggle="collapse" href="#collapseMenuWebsite" role="button" aria-expanded="false" aria-controls="collapseMenuWebsite">Website</a>
+                    <ul class="collapse" id="collapseMenuWebsite">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Website 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Website 2</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item bottom">
+                    <a class="nav-link" href="#">Cấu hình</a>
+                </li> -->
+            {% set i = i + 1 %}
+            {% endfor %}
+            </ul>
+
+        </div>
+    </nav> <!-- End navbar -->
+</div>

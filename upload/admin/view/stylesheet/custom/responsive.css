@@ -1,0 +1,87 @@
+
+/*sm*/
+@media(max-width:576px){
+
+
+}
+
+/*md*/
+@media(max-width:768px){
+
+}
+
+/*lg*/
+@media(max-width:992px){
+	header#header{
+		padding: 10px 20px;
+	}
+	header#header .nav-header .item.link a{
+		top: 0;
+	}
+	header#header .nav-header .item.notifications{
+		top: 10px;
+	}
+	.main-content .box-wrap .box-content{
+		padding: 15px;
+	}
+	form.filter-form .button-options{
+		margin-top: 10px;
+	}
+	table {
+		display: block;
+		width: 100%;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+	}
+	.navbar#sidebar-menu, .main-content{
+		min-height: 0;
+		padding: 0 15px 30px;
+	}
+	.navbar#sidebar-menu{
+		padding: 0;
+	}
+	header#header .logo{
+		padding-left: 80px;
+	}
+	.content-wrapper >.sidebar-left{
+		position: absolute;
+		z-index: 9;
+		top: 8px;
+		left: 15px;
+		width: 60px;
+	}
+	.navbar#sidebar-menu button.navbar-toggler[aria-expanded="true"]{
+		position: fixed;
+		z-index: 10;
+		top: 8px;
+		background: #fff;
+	}
+	.navbar#sidebar-menu >.navbar-collapse{
+		position: fixed;
+		width: 400px;
+		background: #fff;
+		left: 0;
+		padding: 60px 15px 20px;
+		z-index: 9;
+		top: 0;
+	}
+	.navbar#sidebar-menu >.navbar-collapse > ul.navbar-nav{
+		max-height: 100vh;
+		overflow-y: auto;
+	}
+	.main-content nav[aria-label="breadcrumb"] ol.breadcrumb{
+		margin-top: 15px;
+	}
+	.main-content .sub-head{
+		padding: 10px 0;
+	}
+	.main-content .sub-head h1.page-title{
+		font-size: 25px;
+	}
+}
+
+/*xl*/
+@media(min-width:1200px){
+
+}
