@@ -213,11 +213,10 @@ class ControllerCatalogCategory extends Controller {
 				'edit'        => $this->url->link('catalog/category/edit', 'user_token=' . $this->session->data['user_token'] . '&category_id=' . $result['category_id'] . $url, true),
 				'delete'      => $this->url->link('catalog/category/delete', 'user_token=' . $this->session->data['user_token'] . '&category_id=' . $result['category_id'] . $url, true),
 				'status' 	  => $result['status'],
-				'product_quantity' => $this->model_catalog_category->getProductTotal($result['category_id'])
+				'product_quantity' => $this->model_catalog_category->getProductTotal($result['category_id']),
 				'product_quantity_cart' => 5,
 			);
 		}
-		// var_dump($data['categories'][1]);die;
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
 		} else {

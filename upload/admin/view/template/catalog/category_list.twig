@@ -77,7 +77,15 @@
               <td>{{ category.name }}</td>
               <td>{{ category.product_quantity }}</td>
               <td>{{ category.product_quantity_cart }}</td>
-              <td><span class="status-text py-2 px-3 text-white bg-primary border-radius-20">{{ category.status }}</span></td>
+              {% if category.status == 1 %}
+              <td>
+                <span class="status-text py-2 px-3 text-white bg-primary border-radius-20">Enable</span>
+              </td>
+              {% else %}
+              <td>
+                <span class="status-text py-2 px-3 text-white bg-primary border-radius-20">Disable</span>
+              </td>
+              {% endif %}
               <td>
                 <div class="dropdown option-link">
                   <button class="btn btn-light dropdown-toggle" type="button" id="dropdownOrderProductOption-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
