@@ -1,945 +1,284 @@
-{{ header }}{{ column_left }}
-<div id="content">
-  <div class="page-header">
-    <div class="container-fluid">
-      <div class="pull-right"><a href="{{ cancel }}" class="btn btn-default"><i class="fa fa-reply"></i> {{ button_cancel }}</a></div>
-      <h1>{{ heading_title }}</h1>
-      <ul class="breadcrumb">
-        {% for breadcrumb in breadcrumbs %}
-        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-  <div class="container-fluid">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_form }}</h3>
-      </div>
-      <div class="panel-body">
-        <form class="form-horizontal">
-          <ul id="order" class="nav nav-tabs nav-justified">
-            <li class="disabled active"><a href="#tab-customer" data-toggle="tab">1. {{ tab_customer }}</a></li>
-            <li class="disabled"><a href="#tab-cart" data-toggle="tab">2. {{ tab_product }}</a></li>
-            <li class="disabled"><a href="#tab-payment" data-toggle="tab">3. {{ tab_payment }}</a></li>
-            <li class="disabled"><a href="#tab-shipping" data-toggle="tab">4. {{ tab_shipping }}</a></li>
-            <li class="disabled"><a href="#tab-total" data-toggle="tab">5. {{ tab_total }}</a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="tab-customer">
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-store">{{ entry_store }}</label>
-                <div class="col-sm-10">
-                  <select name="store_id" id="input-store" class="form-control">
-                    {% for store in stores %}
-                    {% if store.store_id == store_id %}
-                    <option value="{{ store.store_id }}" selected="selected">{{ store.name }}</option>
-                    {% else %}
-                    <option value="{{ store.store_id }}">{{ store.name }}</option>
-                    {% endif %}
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-currency">{{ entry_currency }}</label>
-                <div class="col-sm-10">
-                  <select name="currency" id="input-currency" class="form-control">
-                    {% for currency in currencies %}
-                    {% if currency.code == currency_code %}
-                    <option value="{{ currency.code }}" selected="selected">{{ currency.title }}</option>
-                    {% else %}
-                    <option value="{{ currency.code }}">{{ currency.title }}</option>
-                    {% endif %}
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-customer">{{ entry_customer }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="customer" value="{{ customer }}" placeholder="{{ entry_customer }}" id="input-customer" class="form-control" />
-                  <input type="hidden" name="customer_id" value="{{ customer_id }}" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-customer-group">{{ entry_customer_group }}</label>
-                <div class="col-sm-10">
-                  <select name="customer_group_id" id="input-customer-group" class="form-control">
-                    {% for customer_group in customer_groups %}
-                    {% if customer_group.customer_group_id == customer_group_id %}
-                    <option value="{{ customer_group.customer_group_id }}" selected="selected">{{ customer_group.name }}</option>
-                    {% else %}
-                    <option value="{{ customer_group.customer_group_id }}">{{ customer_group.name }}</option>
-                    {% endif %}
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-firstname">{{ entry_firstname }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="firstname" value="{{ firstname }}" id="input-firstname" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-lastname">{{ entry_lastname }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="lastname" value="{{ lastname }}" id="input-lastname" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-email">{{ entry_email }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="email" value="{{ email }}" id="input-email" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-telephone">{{ entry_telephone }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="telephone" value="{{ telephone }}" id="input-telephone" class="form-control" />
-                </div>
-              </div>
-              {% for custom_field in custom_fields %}
-              {% if custom_field.location == 'account' %}
-              {% if custom_field.type == 'select' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <select name="custom_field[{{ custom_field.custom_field_id }}]" id="input-custom-field{{ custom_field.custom_field_id }}" class="form-control">
-                    <option value="">{{ text_select }}</option>
-                    {% for custom_field_value in custom_field.custom_field_value %}
-                    {% if account_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id == account_custom_field[custom_field.custom_field_id] %}
-                    <option value="{{ custom_field_value.custom_field_value_id }}" selected="selected">{{ custom_field_value.name }}</option>
-                    {% else %}
-                    <option value="{{ custom_field_value.custom_field_value_id }}">{{ custom_field_value.name }}</option>
-                    {% endif %}
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'radio' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div id="input-custom-field{{ custom_field.custom_field_id }}">
-                    {% for custom_field_value in custom_field.custom_field_value %}
-                    <div class="radio">
-                      {% if account_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id == account_custom_field[custom_field.custom_field_id] %}
-                      <label>
-                        <input type="radio" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ custom_field_value.custom_field_value_id }}" checked="checked" />
-                        {{ custom_field_value.name }}</label>
-                      {% else %}
-                      <label>
-                        <input type="radio" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ custom_field_value.custom_field_value_id }}" />
-                        {{ custom_field_value.name }}</label>
-                      {% endif %}
-                    </div>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'checkbox' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div id="input-custom-field{{ custom_field.custom_field_id }}">
-                    {% for custom_field_value in custom_field.custom_field_value %}
-                    <div class="checkbox">
-                      {% if account_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id in account_custom_field[custom_field.custom_field_id] %}
-                      <label>
-                        <input type="checkbox" name="custom_field[{{ custom_field.custom_field_id }}][]" value="{{ custom_field_value.custom_field_value_id }}" checked="checked" />
-                        {{ custom_field_value.name }}</label>
-                      {% else %}
-                      <label>
-                        <input type="checkbox" name="custom_field[{{ custom_field.custom_field_id }}][]" value="{{ custom_field_value.custom_field_value_id }}" />
-                        {{ custom_field_value.name }}</label>
-                      {% endif %}
-                    </div>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'text' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ account_custom_field[custom_field.custom_field_id] ? account_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" id="input-custom-field{{ custom_field.custom_field_id }}" class="form-control" />
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'textarea' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <textarea name="custom_field[{{ custom_field.custom_field_id }}]" rows="5" placeholder="{{ custom_field.name }}" id="input-custom-field{{ custom_field.custom_field_id }}" class="form-control">{{ custom_field.value }}</textarea>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'file' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <button type="button" id="button-custom-field{{ custom_field.custom_field_id }}" class="btn btn-default"><i class="fa fa-upload"></i> {{ button_upload }}</button>
-                  <input type="hidden" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ account_custom_field[custom_field.custom_field_id] ? account_custom_field[custom_field.custom_field_id] }}" id="input-custom-field{{ custom_field.custom_field_id }}" />
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'date' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div class="input-group date">
-                    <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ account_custom_field[custom_field.custom_field_id] ? account_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" data-date-format="YYYY-MM-DD" id="input-custom-field{{ custom_field.custom_field_id }}" class="form-control" />
-                    <span class="input-group-btn">
-                    <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
-                    </span></div>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'time' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div class="input-group time">
-                    <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ account_custom_field[custom_field.custom_field_id] ? account_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" data-date-format="HH:mm" id="input-custom-field{{ custom_field.custom_field_id }}" class="form-control" />
-                    <span class="input-group-btn">
-                    <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
-                    </span></div>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'datetime' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div class="input-group datetime">
-                    <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ account_custom_field[custom_field.custom_field_id] ? account_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" data-date-format="YYYY-MM-DD HH:mm" id="input-custom-field{{ custom_field.custom_field_id }}" class="form-control" />
-                    <span class="input-group-btn">
-                    <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
-                    </span></div>
-                </div>
-              </div>
-              {% endif %}
-              {% endif %}
-              {% endfor %}
-              <div class="text-right">
-                <button type="button" id="button-customer" data-loading-text="{{ text_loading }}" class="btn btn-primary"><i class="fa fa-arrow-right"></i> {{ button_continue }}</button>
-              </div>
-            </div>
-            <div class="tab-pane" id="tab-cart">
-              <div class="table-responsive">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <td class="text-left">{{ column_product }}</td>
-                      <td class="text-left">{{ column_model }}</td>
-                      <td class="text-right">{{ column_quantity }}</td>
-                      <td class="text-right">{{ column_price }}</td>
-                      <td class="text-right">{{ column_total }}</td>
-                      <td>{{ column_action }}</td>
-                    </tr>
-                  </thead>
-                  <tbody id="cart">
-                    {% if order_products or order_vouchers %}
-                    {% set product_row = 0 %}
-                    {% for order_product in order_products %}
-                    <tr>
-                      <td class="text-left">{{ order_product.name }}<br />
-                        <input type="hidden" name="product[{{ product_row }}][product_id]" value="{{ order_product.product_id }}" />
-                        {% for option in order_product.option %}
-                        - <small>{{ option.name }}: {{ option.value }}</small><br />
-                        {% if option.type == 'select' or option.type == 'radio' or option.type == 'image' %}
-                        <input type="hidden" name="product[{{ product_row }}][option][{{ option.product_option_id }}]" value="{{ option.product_option_value_id }}" />
-                        {% endif %}
-                        {% if option.type == 'checkbox' %}
-                        <input type="hidden" name="product[{{ product_row }}][option][{{ option.product_option_id }}][]" value="{{ option.product_option_value_id }}" />
-                        {% endif %}
-                        {% if option.type == 'text' or option.type == 'textarea' or option.type == 'file' or option.type == 'date' or option.type == 'datetime' or option.type == 'time' %}
-                        <input type="hidden" name="product[{{ product_row }}][option][{{ option.product_option_id }}]" value="{{ option.value }}" />
-                        {% endif %}
-                        {% endfor %}</td>
-                      <td class="text-left">{{ order_product.model }}</td>
-                      <td class="text-right">{{ order_product.quantity }}
-                        <input type="hidden" name="product[{{ product_row }}][quantity]" value="{{ order_product.quantity }}" /></td>
-                      <td class="text-right"></td>
-                      <td class="text-right"></td>
-                      <td class="text-center"></td>
-                    </tr>
-                    {% set product_row = product_row + 1 %}
-                    {% endfor %}
-                    {% set voucher_row = 0 %}
-                    {% for order_voucher in order_vouchers %}
-                    <tr>
-                      <td class="text-left">{{ order_voucher.description }}
-                        <input type="hidden" name="voucher[{{ voucher_row }}][voucher_id]" value="{{ order_voucher.voucher_id }}" />
-                        <input type="hidden" name="voucher[{{ voucher_row }}][description]" value="{{ order_voucher.description }}" />
-                        <input type="hidden" name="voucher[{{ voucher_row }}][code]" value="{{ order_voucher.code }}" />
-                        <input type="hidden" name="voucher[{{ voucher_row }}][from_name]" value="{{ order_voucher.from_name }}" />
-                        <input type="hidden" name="voucher[{{ voucher_row }}][from_email]" value="{{ order_voucher.from_email }}" />
-                        <input type="hidden" name="voucher[{{ voucher_row }}][to_name]" value="{{ order_voucher.to_name }}" />
-                        <input type="hidden" name="voucher[{{ voucher_row }}][to_email]" value="{{ order_voucher.to_email }}" />
-                        <input type="hidden" name="voucher[{{ voucher_row }}][voucher_theme_id]" value="{{ order_voucher.voucher_theme_id }}" />
-                        <input type="hidden" name="voucher[{{ voucher_row }}][message]" value="{{ order_voucher.message }}" />
-                        <input type="hidden" name="voucher[{{ voucher_row }}][amount]" value="{{ order_voucher.amount }}" /></td>
-                      <td class="text-left"></td>
-                      <td class="text-right">1</td>
-                      <td class="text-right"></td>
-                      <td class="text-right"></td>
-                      <td class="text-center"></td>
-                    </tr>
-                    {% set voucher_row = voucher_row + 1 %}
-                    {% endfor %}
-                    {% else %}
-                    <tr>
-                      <td class="text-center" colspan="6">{{ text_no_results }}</td>
-                    </tr>
-                  </tbody>
-                  {% endif %}
-                </table>
-              </div>
-              <ul class="nav nav-tabs nav-justified">
-                <li class="active"><a href="#tab-product" data-toggle="tab">{{ tab_product }}</a></li>
-                <li><a href="#tab-voucher" data-toggle="tab">{{ tab_voucher }}</a></li>
-              </ul>
-              <div class="tab-content">
-                <div class="tab-pane active" id="tab-product">
-                  <fieldset>
-                    <legend>{{ text_product }}</legend>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label" for="input-product">{{ entry_product }}</label>
-                      <div class="col-sm-10">
-                        <input type="text" name="product" value="" id="input-product" class="form-control" />
-                        <input type="hidden" name="product_id" value="" />
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label" for="input-quantity">{{ entry_quantity }}</label>
-                      <div class="col-sm-10">
-                        <input type="text" name="quantity" value="1" id="input-quantity" class="form-control" />
-                      </div>
-                    </div>
-                    <div id="option"></div>
-                  </fieldset>
-                  <div class="text-right">
-                    <button type="button" id="button-product-add" data-loading-text="{{ text_loading }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> {{ button_product_add }}</button>
-                  </div>
-                </div>
-                <div class="tab-pane" id="tab-voucher">
-                  <fieldset>
-                    <legend>{{ text_voucher }}</legend>
-                    <div class="form-group required">
-                      <label class="col-sm-2 control-label" for="input-to-name">{{ entry_to_name }}</label>
-                      <div class="col-sm-10">
-                        <input type="text" name="to_name" value="" id="input-to-name" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="form-group required">
-                      <label class="col-sm-2 control-label" for="input-to-email">{{ entry_to_email }}</label>
-                      <div class="col-sm-10">
-                        <input type="text" name="to_email" value="" id="input-to-email" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="form-group required">
-                      <label class="col-sm-2 control-label" for="input-from-name">{{ entry_from_name }}</label>
-                      <div class="col-sm-10">
-                        <input type="text" name="from_name" value="" id="input-from-name" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="form-group required">
-                      <label class="col-sm-2 control-label" for="input-from-email">{{ entry_from_email }}</label>
-                      <div class="col-sm-10">
-                        <input type="text" name="from_email" value="" id="input-from-email" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="form-group required">
-                      <label class="col-sm-2 control-label" for="input-theme">{{ entry_theme }}</label>
-                      <div class="col-sm-10">
-                        <select name="voucher_theme_id" id="input-theme" class="form-control">
-                          {% for voucher_theme in voucher_themes %}
-                          <option value="{{ voucher_theme.voucher_theme_id }}">{{ voucher_theme.name }}</option>
-                          {% endfor %}
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label" for="input-message">{{ entry_message }}</label>
-                      <div class="col-sm-10">
-                        <textarea name="message" rows="5" id="input-message" class="form-control"></textarea>
-                      </div>
-                    </div>
-                    <div class="form-group required">
-                      <label class="col-sm-2 control-label" for="input-amount">{{ entry_amount }}</label>
-                      <div class="col-sm-10">
-                        <input type="text" name="amount" value="{{ voucher_min }}" id="input-amount" class="form-control" />
-                      </div>
-                    </div>
-                  </fieldset>
-                  <div class="text-right">
-                    <button type="button" id="button-voucher-add" data-loading-text="{{ text_loading }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> {{ button_voucher_add }}</button>
-                  </div>
-                </div>
-              </div>
-              <br />
-              <div class="row">
-                <div class="col-sm-6 text-left">
-                  <button type="button" onclick="$('a[href=\'#tab-customer\']').tab('show');" class="btn btn-default"><i class="fa fa-arrow-left"></i> {{ button_back }}</button>
-                </div>
-                <div class="col-sm-6 text-right">
-                  <button type="button" id="button-cart" class="btn btn-primary"><i class="fa fa-arrow-right"></i> {{ button_continue }}</button>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane" id="tab-payment">
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-payment-address">{{ entry_address }}</label>
-                <div class="col-sm-10">
-                  <select name="payment_address" id="input-payment-address" class="form-control">
-                    <option value="0" selected="selected">{{ text_none }}</option>
-                    {% for address in addresses %}
-                    <option value="{{ address.address_id }}">{{ address.firstname }} {{ address.lastname }}, {{ address.address_1 }}, {{ address.city }}, {{ address.country }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-payment-firstname">{{ entry_firstname }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="firstname" value="{{ payment_firstname }}" id="input-payment-firstname" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-payment-lastname">{{ entry_lastname }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="lastname" value="{{ payment_lastname }}" id="input-payment-lastname" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-payment-company">{{ entry_company }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="company" value="{{ payment_company }}" id="input-payment-company" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-payment-address-1">{{ entry_address_1 }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="address_1" value="{{ payment_address_1 }}" id="input-payment-address-1" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-payment-address-2">{{ entry_address_2 }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="address_2" value="{{ payment_address_2 }}" id="input-payment-address-2" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-payment-city">{{ entry_city }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="city" value="{{ payment_city }}" id="input-payment-city" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-payment-postcode">{{ entry_postcode }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="postcode" value="{{ payment_postcode }}" id="input-payment-postcode" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-payment-country">{{ entry_country }}</label>
-                <div class="col-sm-10">
-                  <select name="country_id" id="input-payment-country" class="form-control">
-                    <option value="">{{ text_select }}</option>
-                    {% for country in countries %}
-                    {% if country.country_id == payment_country_id %}
-                    <option value="{{ country.country_id }}" selected="selected">{{ country.name }}</option>
-                    {% else %}
-                    <option value="{{ country.country_id }}">{{ country.name }}</option>
-                    {% endif %}
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-payment-zone">{{ entry_zone }}</label>
-                <div class="col-sm-10">
-                  <select name="zone_id" id="input-payment-zone" class="form-control">
-                  </select>
-                </div>
-              </div>
-              {% for custom_field in custom_fields %}
-              {% if custom_field.location == 'address' %}
-              {% if custom_field.type == 'select' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-payment-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <select name="custom_field[{{ custom_field.custom_field_id }}]" id="input-payment-custom-field{{ custom_field.custom_field_id }}" class="form-control">
-                    <option value="">{{ text_select }}</option>
-                    {% for custom_field_value in custom_field.custom_field_value %}
-                    {% if payment_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id == payment_custom_field[custom_field.custom_field_id] %}
-                    <option value="{{ custom_field_value.custom_field_value_id }}" selected="selected">{{ custom_field_value.name }}</option>
-                    {% else %}
-                    <option value="{{ custom_field_value.custom_field_value_id }}">{{ custom_field_value.name }}</option>
-                    {% endif %}
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'radio' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div id="input-payment-custom-field{{ custom_field.custom_field_id }}">
-                    {% for custom_field_value in custom_field.custom_field_value %}
-                    <div class="radio">
-                      {% if payment_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id == payment_custom_field[custom_field.custom_field_id] %}
-                      <label>
-                        <input type="radio" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ custom_field_value.custom_field_value_id }}" checked="checked" />
-                        {{ custom_field_value.name }}</label>
-                      {% else %}
-                      <label>
-                        <input type="radio" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ custom_field_value.custom_field_value_id }}" />
-                        {{ custom_field_value.name }}</label>
-                      {% endif %}
-                    </div>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'checkbox' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div id="input-payment-custom-field{{ custom_field.custom_field_id }}">
-                    {% for custom_field_value in custom_field.custom_field_value %}
-                    <div class="checkbox">
-                      {% if payment_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id in payment_custom_field[custom_field.custom_field_id] %}
-                      <label>
-                        <input type="checkbox" name="custom_field[{{ custom_field.custom_field_id }}][]" value="{{ custom_field_value.custom_field_value_id }}" checked="checked" />
-                        {{ custom_field_value.name }}</label>
-                      {% else %}
-                      <label>
-                        <input type="checkbox" name="custom_field[{{ custom_field.custom_field_id }}][]" value="{{ custom_field_value.custom_field_value_id }}" />
-                        {{ custom_field_value.name }}</label>
-                      {% endif %}
-                    </div>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'text' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-payment-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ payment_custom_field[custom_field.custom_field_id] ? payment_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" id="input-payment-custom-field{{ custom_field.custom_field_id }}" class="form-control" />
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'textarea' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-payment-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <textarea name="custom_field[{{ custom_field.custom_field_id }}]" rows="5" placeholder="{{ custom_field.name }}" id="input-payment-custom-field{{ custom_field.custom_field_id }}" class="form-control">{{ payment_custom_field[custom_field.custom_field_id] ? payment_custom_field[custom_field.custom_field_id] : custom_field.value }}</textarea>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'file' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <button type="button" id="button-payment-custom-field{{ custom_field.custom_field_id }}" data-loading-text="{{ text_loading }}" class="btn btn-default"><i class="fa fa-upload"></i> {{ button_upload }}</button>
-                  <input type="hidden" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ payment_custom_field[custom_field.custom_field_id] ? payment_custom_field[custom_field.custom_field_id] }}" id="input-payment-custom-field{{ custom_field.custom_field_id }}" />
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'date' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-payment-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div class="input-group date">
-                    <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ payment_custom_field[custom_field.custom_field_id] ? payment_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" data-date-format="YYYY-MM-DD" id="input-payment-custom-field{{ custom_field.custom_field_id }}" class="form-control" />
-                    <span class="input-group-btn">
-                    <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
-                    </span></div>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'time' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-payment-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div class="input-group time">
-                    <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ payment_custom_field[custom_field.custom_field_id] ? payment_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" data-date-format="HH:mm" id="input-payment-custom-field{{ custom_field.custom_field_id }}" class="form-control" />
-                    <span class="input-group-btn">
-                    <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
-                    </span></div>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'datetime' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-payment-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div class="input-group datetime">
-                    <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ payment_custom_field[custom_field.custom_field_id] ? payment_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" data-date-format="YYYY-MM-DD HH:mm" id="input-payment-custom-field{{ custom_field.custom_field_id }}" class="form-control" />
-                    <span class="input-group-btn">
-                    <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
-                    </span></div>
-                </div>
-              </div>
-              {% endif %}
-              {% endif %}
-              {% endfor %}
-              <div class="row">
-                <div class="col-sm-6 text-left">
-                  <button type="button" onclick="$('a[href=\'#tab-cart\']').tab('show');" class="btn btn-default"><i class="fa fa-arrow-left"></i> {{ button_back }}</button>
-                </div>
-                <div class="col-sm-6 text-right">
-                  <button type="button" id="button-payment-address" data-loading-text="{{ text_loading }}" class="btn btn-primary"><i class="fa fa-arrow-right"></i> {{ button_continue }}</button>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane" id="tab-shipping">
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-shipping-address">{{ entry_address }}</label>
-                <div class="col-sm-10">
-                  <select name="shipping_address" id="input-shipping-address" class="form-control">
-                    <option value="0" selected="selected">{{ text_none }}</option>
-                    {% for address in addresses %}
-                    <option value="{{ address.address_id }}">{{ address.firstname }} {{ address.lastname }}, {{ address.address_1 }}, {{ address.city }}, {{ address.country }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-shipping-firstname">{{ entry_firstname }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="firstname" value="{{ shipping_firstname }}" id="input-shipping-firstname" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-shipping-lastname">{{ entry_lastname }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="lastname" value="{{ shipping_lastname }}" id="input-shipping-lastname" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-shipping-company">{{ entry_company }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="company" value="{{ shipping_company }}" id="input-shipping-company" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-shipping-address-1">{{ entry_address_1 }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="address_1" value="{{ shipping_address_1 }}" id="input-shipping-address-1" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-shipping-address-2">{{ entry_address_2 }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="address_2" value="{{ shipping_address_2 }}" id="input-shipping-address-2" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-shipping-city">{{ entry_city }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="city" value="{{ shipping_city }}" id="input-shipping-city" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-shipping-postcode">{{ entry_postcode }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="postcode" value="{{ shipping_postcode }}" id="input-shipping-postcode" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-shipping-country">{{ entry_country }}</label>
-                <div class="col-sm-10">
-                  <select name="country_id" id="input-shipping-country" class="form-control">
-                    <option value="">{{ text_select }}</option>
-                    {% for country in countries %}
-                    {% if country.country_id == shipping_country_id %}
-                    <option value="{{ country.country_id }}" selected="selected">{{ country.name }}</option>
-                    {% else %}
-                    <option value="{{ country.country_id }}">{{ country.name }}</option>
-                    {% endif %}
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-shipping-zone">{{ entry_zone }}</label>
-                <div class="col-sm-10">
-                  <select name="zone_id" id="input-shipping-zone" class="form-control">
-                  </select>
-                </div>
-              </div>
-              {% for custom_field in custom_fields %}
-              {% if custom_field.location == 'address' %}
-              {% if custom_field.type == 'select' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-shipping-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <select name="custom_field[{{ custom_field.custom_field_id }}]" id="input-shipping-custom-field{{ custom_field.custom_field_id }}" class="form-control">
-                    <option value="">{{ text_select }}</option>
-                    {% for custom_field_value in custom_field.custom_field_value %}
-                    {% if shipping_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id == shipping_custom_field[custom_field.custom_field_id] %}
-                    <option value="{{ custom_field_value.custom_field_value_id }}" selected="selected">{{ custom_field_value.name }}</option>
-                    {% else %}
-                    <option value="{{ custom_field_value.custom_field_value_id }}">{{ custom_field_value.name }}</option>
-                    {% endif %}
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'radio' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div id="input-shipping-custom-field{{ custom_field.custom_field_id }}">
-                    {% for custom_field_value in custom_field.custom_field_value %}
-                    <div class="radio">
-                      {% if shipping_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id == shipping_custom_field[custom_field.custom_field_id] %}
-                      <label>
-                        <input type="radio" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ custom_field_value.custom_field_value_id }}" checked="checked" />
-                        {{ custom_field_value.name }}</label>
-                      {% else %}
-                      <label>
-                        <input type="radio" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ custom_field_value.custom_field_value_id }}" />
-                        {{ custom_field_value.name }}</label>
-                      {% endif %}
-                    </div>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'checkbox' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div id="input-shipping-custom-field{{ custom_field.custom_field_id }}">
-                    {% for custom_field_value in custom_field.custom_field_value %}
-                    <div class="checkbox">
-                      {% if shipping_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id in shipping_custom_field[custom_field.custom_field_id] %}
-                      <label>
-                        <input type="checkbox" name="custom_field[{{ custom_field.custom_field_id }}][]" value="{{ custom_field_value.custom_field_value_id }}" checked="checked" />
-                        {{ custom_field_value.name }}</label>
-                      {% else %}
-                      <label>
-                        <input type="checkbox" name="custom_field[{{ custom_field.custom_field_id }}][]" value="{{ custom_field_value.custom_field_value_id }}" />
-                        {{ custom_field_value.name }}</label>
-                      {% endif %}
-                    </div>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'text' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-shipping-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ shipping_custom_field[custom_field.custom_field_id] ? shipping_custom_field[custom_field.custom_field_id] ? custom_field.value }}" placeholder="{{ custom_field.name }}" id="input-shipping-custom-field{{ custom_field.custom_field_id }}" class="form-control" />
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'textarea' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-shipping-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <textarea name="custom_field[{{ custom_field.custom_field_id }}]" rows="5" placeholder="{{ custom_field.name }}" id="input-shipping-custom-field{{ custom_field.custom_field_id }}" class="form-control">{{ shipping_custom_field[custom_field.custom_field_id] ? shipping_custom_field[custom_field.custom_field_id] : custom_field.value }}</textarea>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'file' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <button type="button" id="button-shipping-custom-field{{ custom_field.custom_field_id }}" data-loading-text="{{ text_loading }}" class="btn btn-default"><i class="fa fa-upload"></i> {{ button_upload }}</button>
-                  <input type="hidden" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ shipping_custom_field[custom_field.custom_field_id] ? shipping_custom_field[custom_field.custom_field_id] }}" id="input-custom-field{{ custom_field.custom_field_id }}" />
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'date' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-shipping-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div class="input-group date">
-                    <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ shipping_custom_field[custom_field.custom_field_id] ? shipping_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" data-date-format="YYYY-MM-DD" id="input-shipping-custom-field{{ custom_field.custom_field_id }}" class="form-control" />
-                    <span class="input-group-btn">
-                    <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
-                    </span></div>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'time' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-shipping-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div class="input-group time">
-                    <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ shipping_custom_field[custom_field.custom_field_id] ? shipping_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" data-date-format="HH:mm" id="input-shipping-custom-field{{ custom_field.custom_field_id }}" class="form-control" />
-                    <span class="input-group-btn">
-                    <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
-                    </span></div>
-                </div>
-              </div>
-              {% endif %}
-              {% if custom_field.type == 'datetime' %}
-              <div class="form-group custom-field custom-field{{ custom_field.custom_field_id }}" data-sort="{{ custom_field.sort_order + 3 }}">
-                <label class="col-sm-2 control-label" for="input-shipping-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
-                <div class="col-sm-10">
-                  <div class="input-group datetime">
-                    <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ shipping_custom_field[custom_field.custom_field_id] ? shipping_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" data-date-format="YYYY-MM-DD HH:mm" id="input-shipping-custom-field{{ custom_field.custom_field_id }}" class="form-control" />
-                    <span class="input-group-btn">
-                    <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
-                    </span></div>
-                </div>
-              </div>
-              {% endif %}
-              {% endif %}
-              {% endfor %}
-              <div class="row">
-                <div class="col-sm-6 text-left">
-                  <button type="button" onclick="$('a[href=\'#tab-payment\']').tab('show');" class="btn btn-default"><i class="fa fa-arrow-left"></i> {{ button_back }}</button>
-                </div>
-                <div class="col-sm-6 text-right">
-                  <button type="button" id="button-shipping-address" data-loading-text="{{ text_loading }}" class="btn btn-primary"><i class="fa fa-arrow-right"></i> {{ button_continue }}</button>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane" id="tab-total">
-              <div class="table-responsive">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <td class="text-left">{{ column_product }}</td>
-                      <td class="text-left">{{ column_model }}</td>
-                      <td class="text-right">{{ column_quantity }}</td>
-                      <td class="text-right">{{ column_price }}</td>
-                      <td class="text-right">{{ column_total }}</td>
-                    </tr>
-                  </thead>
-                  <tbody id="total">
-                    <tr>
-                      <td class="text-center" colspan="5">{{ text_no_results }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <fieldset>
-                <legend>{{ text_order_detail }}</legend>
-                <div class="form-group required">
-                  <label class="col-sm-2 control-label" for="input-shipping-method">{{ entry_shipping_method }}</label>
-                  <div class="col-sm-10">
-                    <div class="input-group">
-                      <select name="shipping_method" id="input-shipping-method" class="form-control">
-                        <option value="">{{ text_select }}</option>
-                        {% if shipping_code %}
-                        <option value="{{ shipping_code }}" selected="selected">{{ shipping_method }}</option>
-                        {% endif %}
-                      </select>
-                      <span class="input-group-btn">
-                      <button type="button" id="button-shipping-method" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_apply }}</button>
-                      </span></div>
-                  </div>
-                </div>
-                <div class="form-group required">
-                  <label class="col-sm-2 control-label" for="input-payment-method">{{ entry_payment_method }}</label>
-                  <div class="col-sm-10">
-                    <div class="input-group">
-                      <select name="payment_method" id="input-payment-method" class="form-control">
-                        <option value="">{{ text_select }}</option>
-                        {% if payment_code %}
-                        <option value="{{ payment_code }}" selected="selected">{{ payment_method }}</option>
-                        {% endif %}
-                      </select>
-                      <span class="input-group-btn">
-                      <button type="button" id="button-payment-method" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_apply }}</button>
-                      </span></div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-coupon">{{ entry_coupon }}</label>
-                  <div class="col-sm-10">
-                    <div class="input-group">
-                      <input type="text" name="coupon" value="{{ coupon }}" id="input-coupon" class="form-control" />
-                      <span class="input-group-btn">
-                      <button type="button" id="button-coupon" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_apply }}</button>
-                      </span></div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-voucher">{{ entry_voucher }}</label>
-                  <div class="col-sm-10">
-                    <div class="input-group">
-                      <input type="text" name="voucher" value="{{ voucher }}" id="input-voucher" data-loading-text="{{ text_loading }}" class="form-control" />
-                      <span class="input-group-btn">
-                      <button type="button" id="button-voucher" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_apply }}</button>
-                      </span></div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-reward">{{ entry_reward }}</label>
-                  <div class="col-sm-10">
-                    <div class="input-group">
-                      <input type="text" name="reward" value="{{ reward }}" id="input-reward" data-loading-text="{{ text_loading }}" class="form-control" />
-                      <span class="input-group-btn">
-                      <button type="button" id="button-reward" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_apply }}</button>
-                      </span></div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-order-status">{{ entry_order_status }}</label>
-                  <div class="col-sm-10">
-                    <select name="order_status_id" id="input-order-status" class="form-control">
-                      {% for order_status in order_statuses %}
-                      {% if order_status.order_status_id == order_status_id %}
-                      <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }}</option>
-                      {% else %}
-                      <option value="{{ order_status.order_status_id }}">{{ order_status.name }}</option>
-                      {% endif %}
-                      {% endfor %}
-                    </select>
-                    <input type="hidden" name="order_id" value="{{ order_id }}" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-comment">{{ entry_comment }}</label>
-                  <div class="col-sm-10">
-                    <textarea name="comment" rows="5" id="input-comment" class="form-control">{{ comment }}</textarea>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-affiliate">{{ entry_affiliate }}</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="affiliate" value="{{ affiliate }}" id="input-affiliate" class="form-control" />
-                    <input type="hidden" name="affiliate_id" value="{{ affiliate_id }}" />
-                  </div>
-                </div>
-              </fieldset>
-              <div class="row">
-                <div class="col-sm-6 text-left">
-                  <button type="button" onclick="$('select[name=\'shipping_method\']').prop('disabled') ? $('a[href=\'#tab-payment\']').tab('show') : $('a[href=\'#tab-shipping\']').tab('show');" class="btn btn-default"><i class="fa fa-arrow-left"></i> {{ button_back }}</button>
-                </div>
-                <div class="col-sm-6 text-right">
-                  <button type="button" id="button-refresh" data-toggle="tooltip" title="{{ button_refresh }}" data-loading-text="{{ text_loading }}" class="btn btn-warning"><i class="fa fa-refresh"></i></button>
-                  <button type="button" id="button-save" class="btn btn-primary"><i class="fa fa-check-circle"></i> {{ button_save }}</button>
-                </div>
-              </div>
+<div class="page-wrapper">
+  {{ custom_header }}
+    <div class="content-wrapper row m-0">
+    {{ custom_column_left }}
+  <main class="main-wrap col-12 col-lg-10 p-0">
+      <div class="main-content">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+          {% for breadcrumb in breadcrumbs %}
+            <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+            {% endfor %}
+            <li class="breadcrumb-item active" aria-current="page">{{ text_form }}</li>
+          </ol>
+        </nav>
+        <div class="sub-head clearfix">
+          <h1 class="page-title float-left">{{ text_form }}</h1>
+        </div>
+        <div class="box-wrap">
+          <div class="box-head">
+            <div class="nav nav-tabs" id="order-form-tab" role="tablist">
+              <a class="active" id="nav-customer-tab" data-toggle="tab" href="#nav-customer" role="tab" aria-controls="nav-customer" aria-selected="true">Thông tin khách hàng</a>
+              <a id="nav-product-tab" data-toggle="tab" href="#nav-product" role="tab" aria-controls="nav-product" aria-selected="false">Thông tin sản phẩm</a>
+              <a id="nav-order-tab" data-toggle="tab" href="#nav-order" role="tab" aria-controls="nav-order" aria-selected="false">Đơn hàng</a>
             </div>
           </div>
-        </form>
-      </div>
+          <div class="box-content">
+            <form class="form-step" id="order-form">
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="nav-customer" role="tabpanel">
+                  <div class="form-group row text-lg-right">
+                    <label class="col-12 col-lg-2" for="customer-input">Khách hàng *</label>
+                    <div class="col-12 col-lg-10">
+                      <input type="text" name="customer" required id="customer-input" class="form-control bg-light col-md-10" placeholder="Khách hàng">
+                    </div>
+                  </div>
+                  <div class="form-group row text-lg-right">
+                    <label class="col-12 col-lg-2" for="first-name-input">Họ *</label>
+                    <div class="col-12 col-lg-10">
+                      <input type="text" name="first-name" required id="first-name-input" class="form-control bg-light col-md-10" placeholder="Nhập họ">
+                    </div>
+                  </div>
+                  <div class="form-group row text-lg-right">
+                    <label class="col-12 col-lg-2" for="last-name-input">Tên *</label>
+                    <div class="col-12 col-lg-10">
+                      <input type="text" name="last-name" required id="last-name-input" class="form-control bg-light col-md-10" placeholder="Nhập tên">
+                    </div>
+                  </div>
+                  <div class="form-group row text-lg-right">
+                    <label class="col-12 col-lg-2" for="email-input">E-mail</label>
+                    <div class="col-12 col-lg-10">
+                      <input type="text" name="email" id="email-input" class="form-control bg-light col-md-10" placeholder="Nhập email khách hàng">
+                    </div>
+                  </div>
+                  <div class="form-group row text-lg-right">
+                    <label class="col-12 col-lg-2" for="phone-input">Số điện thoại *</label>
+                    <div class="col-12 col-lg-10">
+                      <input type="text" name="phone" required id="phone-input" class="form-control bg-light col-md-10" placeholder="Nhập số điện thoại">
+                    </div>
+                  </div>
+                  <div class="form-action clearfix">
+                    <div class="float-right right-button mt-5">
+                      <a href="#">Hủy</a>
+                      <button class="btn btn-light text-white" type="submit">Xác nhận</button>
+                    </div>
+                  </div>
+                </div>
+                <!-- End tab pane -->
+
+                <div class="tab-pane fade" id="nav-product" role="tabpanel">
+                  <div class="form-group row">
+                    <label class="col-md-2" for="product-id-input">Chọn sản phẩm</label>
+                    <div class="col-md-10">
+                      <input type="text" name="product-id" required id="product-id-input" class="form-control col-md-10" placeholder="Tìm kiếm sản phẩm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <div class="dropdown-menu">
+                        <div class="list-group">
+                          <a href="#"class="dropdown-item" >Sản phẩm 1</a>
+                          <a href="#"class="dropdown-item" >Sản phẩm 2</a>
+                          <a href="#"class="dropdown-item" >Sản phẩm 3</a>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#addNewProductModal"><i class="icon icon-plus"></i> Thêm sản phẩm mới</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade" id="addNewProductModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header px-4">
+                          <h5 class="modal-title">Thêm mới sản phẩm</h5>
+                        </div>
+                        <div class="modal-body px-4">
+                          <div class="form-group">
+                            <label for="product-name">Tên sản phẩm</label>
+                            <input type="text" name="product_name" id="product-name" class="form-control bg-light">
+                          </div>
+                          <div class="form-group row">
+                            <div class="col-md-6">
+                              <label for="product-price">Giá mỗi sản phẩm</label>
+                              <input type="text" name="product_price" id="product-price" class="form-control bg-light">
+                            </div>
+                            <div class="col-md-6">
+                              <label for="product-quantity">Số lượng</label>
+                              <input type="number" name="product_quantity" id="product-quantity" class="form-control bg-light" placeholder="đ">
+                            </div>
+                          </div>
+                          <div class="form-action clearfix">
+                            <div class="float-right right-button mt-5">
+                              <a href="#" data-dismiss="modal" aria-label="Close">Hủy</a>
+                              <button class="btn btn-light text-white" type="button">Xác nhận</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <table class="table border product-list">
+                    <thead>
+                      <tr>
+                        <th scope="col">Sản phẩm</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Giá</th>
+                        <th scope="col">Tổng</th>
+                        <th scope="col">Hành động</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="row">
+                            <div class="col-3">
+                              <div class="product-img rounded bg-light">
+                              </div>
+                            </div>
+                            <div class="product-title col-9 py-2">[Sample] Able Brewing System ABS</div>
+                          </div>
+                        </td>
+                        <td width="150"><input type="number" name="product_quantity[]" class="form-control" value="1"></td>
+                        <td width="180"><input type="number" name="product_quantity[]" class="form-control" value="750000"></td>
+                        <td width="180"><span class="product-total py-2 d-inline-block">676.500đ</span></td>
+                        <td>
+                          <div class="dropdown option-link">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownOrderProductOption-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownOrderProductOption-1">
+                              <a class="dropdown-item" href="#">Action</a>
+                              <a class="dropdown-item" href="#">Another action</a>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="row">
+                            <div class="col-3">
+                              <div class="product-img rounded bg-light">
+                              </div>
+                            </div>
+                            <div class="product-title col-9 py-2">[Sample] Able Brewing System ABS</div>
+                          </div>
+                        </td>
+                        <td width="150"><input type="number" name="product_quantity[]" class="form-control" value="1"></td>
+                        <td width="180"><input type="number" name="product_quantity[]" class="form-control" value="750000"></td>
+                        <td width="180"><span class="product-total py-2 d-inline-block">676.500đ</span></td>
+                        <td>
+                          <div class="dropdown option-link">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownOrderProductOption-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownOrderProductOption-2">
+                              <a class="dropdown-item" href="#">Action</a>
+                              <a class="dropdown-item" href="#">Another action</a>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="form-action clearfix">
+                    <div class="float-left left-button mt-5">
+                      <button class="btn btn-light text-dark" type="button" id="prev-tab"><i class="icon icon-left-arrow"></i> Quay lại</button>
+                    </div>
+                    <div class="float-right right-button mt-5">
+                      <a href="#">Hủy</a>
+                      <button class="btn btn-light text-white" type="submit">Xác nhận</button>
+                    </div>
+                  </div>
+                </div>
+                <!-- End Tab pane -->
+
+                <div class="tab-pane fade" id="nav-order" role="tabpanel">
+                  <table class="table border product-list">
+                    <thead>
+                      <tr>
+                        <th scope="col">Sản phẩm</th>
+                        <th scope="col" width="150">Số lượng</th>
+                        <th scope="col" width="180">Giá</th>
+                        <th scope="col" width="160">Tổng</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="row">
+                            <div class="col-3">
+                              <div class="product-img rounded bg-light">
+                              </div>
+                            </div>
+                            <div class="product-title col-9 py-2">[Sample] Able Brewing System ABS</div>
+                          </div>
+                        </td>
+                        <td>1</td>
+                        <td>750.000đ</td>
+                        <td>676.500đ</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="row">
+                            <div class="col-3">
+                              <div class="product-img rounded bg-light">
+                              </div>
+                            </div>
+                            <div class="product-title col-9 py-2">[Sample] Able Brewing System ABS</div>
+                          </div>
+                        </td>
+                        <td>1</td>
+                        <td>750.000đ</td>
+                        <td>676.500đ</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="mt-4 clearfix">
+                    <h3 class="float-left my-3">THÔNG TIN KHÁC</h3>
+                    <span class="btn btn-brown float-right"><h2 class="m-0 py-2 px-4">1.560.000đ</h4></span>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4 form-group">
+                        <label for="order-payment">Thanh toán</label>
+                        <input type="number" id="order-payment" name="order_payment" class="form-control bg-light">
+                      </div>
+                      <div class="col-md-4 form-group">
+                        <label for="order-delivery">Vận chuyển</label>
+                        <input type="number" name="order_delivery" id="order-delivery" class="form-control bg-light">
+                      </div>
+                      <div class="col-md-4 form-group">
+                        <label for="order-status">Trạng thái đơn</label>
+                        <select name="order_status" id="order-status" class="form-control bg-light">
+                          <option value="0">Đang chờ</option>
+                          <option value="1">Đã duyệt</option>
+                          <option value="2">Hoàn thành</option>
+                        </select>
+                      </div>
+                      <div class="col-md-12 form-group">
+                        <label for="order-comment">Ghi chú</label>
+                        <textarea name="order_comment" id="order-comment" class="form-control bg-light" rows="2"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="form-action clearfix">
+                      <div class="float-left left-button mt-5">
+                        <button class="btn btn-light text-dark" type="button" id="prev-tab"><i class="icon icon-left-arrow"></i> Quay lại</button>
+                      </div>
+                      <div class="float-right right-button mt-5">
+                        <a href="#">Hủy</a>
+                        <button class="btn btn-light text-white" type="submit">Xác nhận</button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End tab pane -->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- End Main -->
     </div>
-  </div>
   <script type="text/javascript"><!--
 // Disable the tabs
 $('#order a[data-toggle=\'tab\']').on('click', function(e) {

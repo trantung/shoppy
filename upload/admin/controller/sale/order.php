@@ -393,7 +393,6 @@ class ControllerSaleOrder extends Controller {
 		} else {
 			$data['api_token'] = '';
 		}
-
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['custom_header'] = $this->load->controller('common/custom_header');
@@ -450,10 +449,10 @@ class ControllerSaleOrder extends Controller {
 
 		$data['breadcrumbs'] = array();
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
-		);
+		// $data['breadcrumbs'][] = array(
+		// 	'text' => $this->language->get('text_home'),
+		// 	'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
+		// );
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
