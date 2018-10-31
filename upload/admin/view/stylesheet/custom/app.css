@@ -45,28 +45,28 @@ i.icon{
 	background-color: #000;
 }
 .icon.icon-notifi{
-	-webkit-mask:  url('../img/icons/notification.svg') no-repeat center;
-	mask: url('../img/icons/notification.svg') no-repeat center;
+	-webkit-mask:  url('../../image/custom/icons/notification.svg') no-repeat center;
+	mask: url('../../image/custom/icons/notification.svg') no-repeat center;
 }
 .icon.icon-search{
-	-webkit-mask:  url('../img/icons/search.svg') no-repeat center;
-	mask: url('../img/icons/search.svg') no-repeat center;
+	-webkit-mask:  url('../../image/custom/icons/search.svg') no-repeat center;
+	mask: url('../../image/custom/icons/search.svg') no-repeat center;
 }
 .icon.icon-import{
-	-webkit-mask:  url('../img/icons/import.svg') no-repeat center;
-	mask: url('../img/icons/import.svg') no-repeat center;
+	-webkit-mask:  url('../../image/custom/icons/import.svg') no-repeat center;
+	mask: url('../../image/custom/icons/import.svg') no-repeat center;
 }
 .icon.icon-export{
-	-webkit-mask:  url('../img/icons/export.svg') no-repeat center;
-	mask: url('../img/icons/export.svg') no-repeat center;
+	-webkit-mask:  url('../../image/custom/icons/export.svg') no-repeat center;
+	mask: url('../../image/custom/icons/export.svg') no-repeat center;
 }
 .icon.icon-plus{
-	-webkit-mask:  url('../img/icons/plus.svg') no-repeat center;
-	mask: url('../img/icons/plus.svg') no-repeat center;
+	-webkit-mask:  url('../../image/custom/icons/plus.svg') no-repeat center;
+	mask: url('../../image/custom/icons/plus.svg') no-repeat center;
 }
 .icon.icon-left-arrow{
-	-webkit-mask:  url('../img/icons/left-arrow.svg') no-repeat center;
-	mask: url('../img/icons/left-arrow.svg') no-repeat center;
+	-webkit-mask:  url('../../image/custom/icons/left-arrow.svg') no-repeat center;
+	mask: url('../../image/custom/icons/left-arrow.svg') no-repeat center;
     min-width: 23px;
     min-height: 18px;
     font-size: 6px;
@@ -181,7 +181,7 @@ header#header .nav-header .item.profile .avatar > a{
 	display: inline-block;
 	width: 33px;
 	height: 33px;
-	background: url('../img/icons/avatar.svg') no-repeat center;
+	background: url('../../image/custom/icons/avatar.svg') no-repeat center;
 	background-size: contain;
 }
 header#header .nav-header a.dropdown-toggle:after{
@@ -206,7 +206,7 @@ header#header .nav-header a.dropdown-toggle:after{
 	display: inline-block;
 	width: 0;
 	height: 1em;
-	background: url(../img/icons/indicator-list.svg) no-repeat bottom left;
+	background: url(../../image/custom/icons/indicator-list.svg) no-repeat bottom left;
 	transition: all 0.2s ease;
 	-webkit-transition: all 0.2s ease;
 	-moz-transition: all 0.2s ease;
@@ -465,7 +465,7 @@ td input{
 	font-weight: 500;
 }
 .product-list .product-img{
-	background: url('../img/icons/photo.svg') no-repeat center;
+	background: url('../../image/custom/icons/photo.svg') no-repeat center;
 	background-size: 50px 50px;
 	padding-top: 100%;
 	position: relative;

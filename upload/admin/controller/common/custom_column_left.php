@@ -14,7 +14,21 @@ class ControllerCommonCustomColumnLeft extends Controller {
 				'href'     => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true),
 				'children' => array()
 			);
-			
+			if ($this->user->hasPermission('access', 'sale/order')) {
+				$sale[] = array(
+					'name'	   => $this->language->get('text_order'),
+					'href'     => $this->url->link('sale/order', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);	
+			}
+			if ($sale) {
+				$data['menus'][] = array(
+					'id'       => 'menu-catalog',
+					'icon'	   => 'fa-tags', 
+					'name'	   => 'Đơn hàng',
+					'href'     => $this->url->link('sale/order', 'user_token=' . $this->session->data['user_token'], true),
+				);		
+			}
 			// Catalog
 			$catalog = array();
 			
